@@ -1,0 +1,108 @@
+<h2 mat-dialog-title>{{ isAddMode ? 'Ajouter Disponibilité' : 'Modifier Disponibilité' }}</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onYesClick()">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Date de début</mat-label>
+        <input matInput type="date" formControlName="dateDebut" required>
+        <mat-error *ngIf="form.controls['dateDebut'].hasError('required')">La date de début est requise.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Date de fin</mat-label>
+        <input matInput type="date" formControlName="dateFin" required>
+        <mat-error *ngIf="form.controls['dateFin'].hasError('required')">La date de fin est requise.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de chambres (Type 2)</mat-label>
+        <input matInput type="number" formControlName="nbChambre2" required>
+        <mat-error *ngIf="form.controls['nbChambre2'].hasError('required')">Le nombre de chambres est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de chambres restantes (Type 2)</mat-label>
+        <input matInput type="number" formControlName="nbChambreRestantes2" required>
+        <mat-error *ngIf="form.controls['nbChambreRestantes2'].hasError('required')">Le nombre de chambres restantes est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Prix par chambre (Type 2)</mat-label>
+        <input matInput type="number" formControlName="prixChambre2" required>
+        <mat-error *ngIf="form.controls['prixChambre2'].hasError('required')">Le prix par chambre est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de chambres (Type 3)</mat-label>
+        <input matInput type="number" formControlName="nbChambre3" required>
+        <mat-error *ngIf="form.controls['nbChambre3'].hasError('required')">Le nombre de chambres est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de chambres restantes (Type 3)</mat-label>
+        <input matInput type="number" formControlName="nbChambreRestantes3" required>
+        <mat-error *ngIf="form.controls['nbChambreRestantes3'].hasError('required')">Le nombre de chambres restantes est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Prix par chambre (Type 3)</mat-label>
+        <input matInput type="number" formControlName="prixChambre3" required>
+        <mat-error *ngIf="form.controls['prixChambre3'].hasError('required')">Le prix par chambre est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de chambres (Type 4)</mat-label>
+        <input matInput type="number" formControlName="nbChambre4" required>
+        <mat-error *ngIf="form.controls['nbChambre4'].hasError('required')">Le nombre de chambres est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de chambres restantes (Type 4)</mat-label>
+        <input matInput type="number" formControlName="nbChambreRestantes4" required>
+        <mat-error *ngIf="form.controls['nbChambreRestantes4'].hasError('required')">Le nombre de chambres restantes est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Prix par chambre (Type 4)</mat-label>
+        <input matInput type="number" formControlName="prixChambre4" required>
+        <mat-error *ngIf="form.controls['prixChambre4'].hasError('required')">Le prix par chambre est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Maison d'hôte ID</mat-label>
+        <input matInput type="number" formControlName="Maisondhote_id" required>
+        <mat-error *ngIf="form.controls['Maisondhote_id'].hasError('required')">L'ID de la maison d'hôte est requis.</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onYesClick()">
+    {{ isAddMode ? 'Ajouter' : 'Enregistrer' }}
+  </button>
+</div>

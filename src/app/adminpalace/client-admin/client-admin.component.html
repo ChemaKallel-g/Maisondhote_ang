@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Client CRUD</h3>
+          <div class="card-tools">
+            <button mat-raised-button color="primary" (click)="AddClientModal()">Add Client</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table id="clientTable" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>CIN</th>
+                <th>Phone Number</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of clients">
+                <td>{{client.id}}</td>
+                <td>{{client.nomClient}}</td>
+                <td>{{client.cin}}</td>
+                <td>{{client.numTel}}</td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm" (click)="EditClientModal(client)">Edit</button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="deleteClient(client.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+<div class="header-section">
+    <div class="header-overlay">
+        <div class="logo-area">
+            <img src="assets/logo2.png" class="logo" alt="Logo">
+            <span class="logo-text">Maison D'hote</span>
+        </div>
+        <div class="main-navigation">
+            <a routerLink="/Home" class="nav-item">Home</a>
+            <a *ngIf="!isLoggedIn()" href="/register" class="signup-button">Sign up</a>
+            <a *ngIf="!isLoggedIn()" href="/login" class="login-button">Log in</a>
+            <a *ngIf="isLoggedIn()" href="/login" (click)="logout()" class="signup-button">Log out</a>
+        </div>
+        <div class="hero-text">
+            <div class="bigtext1">Stay Quietly,</div>
+            <div class="bigtext2">With no Worries</div>
+        </div>
+        <div class="search-container">
+            <div>
+                <label for="destination">Location</label>
+                <input type="text" id="destination" [(ngModel)]="destination" placeholder="Enter your destination">
+                <div style="color: gray; ">{{Maisondhote_count}}</div>
+            </div>
+            <div>
+                <label for="person">Person</label>
+                <select id="person" [(ngModel)]="selectedPerson">
+                    <option value="" disabled selected>Person</option>
+                    
+                    <option value="2">2 Adult</option>
+                    <option value="3">3 Adult</option>
+                    <option value="4">4 Adult</option>
+                </select>
+            </div>
+            <div>
+                <label for="checkin">Check-in</label>
+                <input type="date" id="checkin" [(ngModel)]="checkInDate">
+            </div>
+            <div>
+                <label for="checkout">Check-out</label>
+                <input type="date" id="checkout" [(ngModel)]="checkOutDate">
+            </div>
+            <div>
+                <button (click)="searchMaisondhote()">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="content-title">Our Most Amazing Visited Maisondhote on 2024 !</h2>
+    <p>take a look our best choise for the Maisondhotes of the year, we pick the Maisondhotes from our amazing visitors</p>
+    <div class="featured-houses">
+        <div class="house-card">
+            <img src="assets/best1.jpg" alt="Dar Kenza">
+            <div class="house-info">
+                <h3 class="house-title">Dar Kenza</h3>
+                <p class="house-location">Sfax</p>
+                <p>⭐️⭐️⭐️⭐️⭐️ (218 Visitors)</p>
+            </div>
+        </div>
+        <div class="house-card">
+            <img src="assets/best2.jpg" alt="Dar hana">
+            <div class="house-info">
+                <h3 class="house-title">Dar hana</h3>
+                <p class="house-location">Sfax</p>
+                <p>⭐️⭐️⭐️⭐️⭐️ (218 Visitors)</p>
+            </div>
+        </div>
+        <div class="house-card">
+            <img src="assets/best3.jpg" alt="Les Jasmins">
+            <div class="house-info">
+                <h3 class="house-title">Les Jasmins</h3>
+                <p class="house-location">Djerba</p>
+                <p>⭐️⭐️⭐️⭐️⭐️ (218 Visitors)</p>
+            </div>
+        </div>
+        <div class="house-card">
+            <img src="assets/best1.jpg" alt="Maison Leila">
+            <div class="house-info">
+                <h3 class="house-title">Maison Leila</h3>
+                <p class="house-location">New Zealand, Australia</p>
+                <p>⭐️⭐️⭐️⭐️⭐️ (718 Visitors)</p>
+            </div>
+        </div>
+        <div class="house-card">
+            <img src="assets/best2.jpg" alt="Dar Zaineb">
+            <div class="house-info">
+                <h3 class="house-title">Dar Zaineb</h3>
+                <p class="house-location">New Zealand, Australia</p>
+                <p>⭐️⭐️⭐️⭐️⭐️ (718 Visitors)</p>
+            </div>
+        </div>
+        <div class="house-card">
+            <img src="assets/best3.jpg" alt="Dar Tenast">
+            <div class="house-info">
+                <h3 class="house-title">Dar Tenast</h3>
+                <p class="house-location">New Zealand, Australia</p>
+                <p>⭐️⭐️⭐️⭐️⭐️ (718 Visitors)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-section">
+    <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">Search</a>
+        <a href="#">Blog</a>
+        <a href="#">About us</a>
+    </div>
+    <div class="footer-links">
+        <a href="#">Find Maisondhote</a>
+        <a href="#">Book Maisondhote</a>
+        <a href="#">Reviews</a>
+    </div>
+    <div class="footer-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Laws</a>
+    </div>
+    <div class="subscription-section">
+        <div class="left-content">
+            <h2>Don't Wanna Miss Our Offers?</h2>
+            <div class="subscription-form">
+                <input type="email" id="email" name="email" placeholder="Your email@gmail.com">
+                <button type="submit">Subscribe</button>
+            </div>
+        </div>
+        <div class="right-content">
+            <p>You guys better subscribe to our daily newsletter!</p>
+        </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025</div>
+</div>

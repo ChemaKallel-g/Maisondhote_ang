@@ -1,0 +1,27 @@
+.custom-title {
+    background-color: #dc3545; /* Fond rouge pour le titre */
+    color: white;
+    padding: 12px;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 16px;
+  }
+  
+  .custom-content {
+    font-style: italic;
+  }
+  
+  .custom-actions {
+    justify-content: center; /* Centrer les boutons */
+    margin-top: 20px;
+  }
+  
+  .custom-cancel-button {
+    background-color: #ffc107; /* Fond jaune pour "Annuler" */
+    color: #333;
+  }
+  
+  .custom-delete-button {
+    background-color: #28a745; /* Fond vert pour "Supprimer" */
+    color: white;
+    margin-left: 16px;
+  }

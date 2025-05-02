@@ -1,0 +1,30 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <a class="navbar-brand" href="#">AdminPalace</a>
+  </nav>
+  
+  <!-- Sidebar + Content -->
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <div class="bg-dark text-white p-3" style="width: 250px; height: 100vh;">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/adminpalace/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/adminpalace/clients">Clients</a>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="flex-grow-1 p-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="bg-light text-center py-3 mt-4">
+    © 2025 AdminPalace
+  </footer>
+  

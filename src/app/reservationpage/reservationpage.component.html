@@ -1,0 +1,118 @@
+<div class="reservation-page">
+    <div class="header-section">
+        <div class="logo-area">
+            <img src="assets/logo2.png" class="logo" alt="Logo">
+            <span class="logo-text">Maison D'hote</span>
+        </div>
+        <div class="main-navigation">
+            <a routerLink="/dashboard" class="nav-item">Home</a>
+            <a *ngIf="!isLoggedIn()" href="/register" class="signup-button">Sign up</a>
+            <a *ngIf="!isLoggedIn()" href="/login" class="login-button">Log in</a>
+            <a *ngIf="isLoggedIn()" href="/login" (click)="logout()" class="signup-button">Log out</a>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="image-gallery">
+            <img *ngIf="photo?.photo1" src="assets/{{ photo?.photo1 }}" class="main-image" alt="Maison d'hôte">
+            <div class="thumbnails">
+                <img *ngIf="photo?.photo2" src="assets/{{ photo?.photo2 }}" class="thumbnail" alt="Maison d'hôte">
+                <img *ngIf="photo?.photo3" src="assets/{{ photo?.photo3 }}" class="thumbnail" alt="Maison d'hôte">
+                <img *ngIf="photo?.photo4" src="assets/{{ photo?.photo4 }}" class="thumbnail" alt="Maison d'hôte">
+                <img *ngIf="photo?.photo5" src="assets/{{ photo?.photo5 }}" class="thumbnail" alt="Maison d'hôte">
+            </div>
+        </div>
+
+        <div class="reservation-details">
+            <div class="info-block">
+                <h2 class="block-title">Détails de la réservation</h2>
+                <div class="detail-item">
+                    <span class="detail-label">Location:</span>
+                    <span class="detail-value">{{ myMaisondhote?.ville }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Personnes:</span>
+                    <span class="detail-value">{{ selectedPerson }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Arrivée:</span>
+                    <span class="detail-value">{{ checkInDate }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Départ:</span>
+                    <span class="detail-value">{{ checkOutDate }}</span>
+                </div>
+            </div>
+
+            <div class="pricing-block">
+                <h2 class="block-title">Sélection des chambres</h2>
+                <div class="room-selection">
+                    <div class="room-type">
+                        <span class="room-label">Chambre Double:</span>
+                        <select [(ngModel)]="selectedChambre2" (change)="onChambreChanged()">
+                            <option *ngFor="let Chambre of Chambre" [value]="Chambre">{{ Chambre }}</option>
+                        </select>
+                    </div>
+                    <div class="room-type">
+                        <span class="room-label">Chambre Triple:</span>
+                        <select [(ngModel)]="selectedChambre3" (change)="onChambreChanged()">
+                            <option *ngFor="let Chambre of Chambre" [value]="Chambre">{{ Chambre }}</option>
+                        </select>
+                    </div>
+                    <div class="room-type">
+                        <span class="room-label">Chambre Quadruple:</span>
+                        <select [(ngModel)]="selectedChambre4" (change)="onChambreChanged()">
+                            <option *ngFor="let Chambre of Chambre" [value]="Chambre">{{ Chambre }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="price-per-night">
+                    <span class="label">Prix par nuit:</span>
+                    <span class="value">${{ pricePerNight }}/nuit</span>
+                </div>
+                <div class="total-price">
+                    <span class="label">Total:</span>
+                    <span class="value">${{ priceTotal }}</span>
+                </div>
+                <button class="book-button" (click)="makeReservation()">Réserver</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-section">
+        <div class="footer-links-container">
+            <div class="footer-links">
+                <h3>Page</h3>
+                <a href="#">Home</a>
+                <a href="#">Search</a>
+                <a href="#">Blog</a>
+                <a href="#">About us</a>
+            </div>
+            <div class="footer-links">
+                <h3>Features</h3>
+                <a href="#">Find Maisondhote</a>
+                <a href="#">Book Maisondhote</a>
+                <a href="#">Reviews</a>
+            </div>
+            <div class="footer-links">
+                <h3>Cookies</h3>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Laws</a>
+            </div>
+            <div class="subscription-section">
+                <div class="left-content">
+                    <h2>Don't Wanna Miss Our Offers?</h2>
+                    <div class="subscription-form">
+                        <input type="email" id="email" name="email" placeholder="Your email@gmail.com">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+                <div class="right-content">
+                    <p>You guys better subscribe to our daily newsletter!</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2025 JoyEvent</div>
+    </div>
+</div>

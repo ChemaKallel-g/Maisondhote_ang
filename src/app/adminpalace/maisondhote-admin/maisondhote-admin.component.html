@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Maisondhote CRUD</h3>
+            <div class="card-tools">
+              <button mat-raised-button color="primary" (click)="AddMaisondhote()">Add Maison d'hôte</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <table id="MaisondhoteTable" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>Visitor Count</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let Maisondhote of Maisondhotes">
+                  <td>{{Maisondhote.id}}</td>
+                  <td>{{Maisondhote.nomMaisondhote}}</td>
+                  <td>{{Maisondhote.adress}}</td>
+                  <td>{{Maisondhote.ville}}</td>
+                  <td>{{Maisondhote.nbVisiteur}}</td>
+                  <td>
+                    <button type="button" class="btn btn-warning btn-sm" (click)="EditMaisondhote(Maisondhote)">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteMaisondhote(Maisondhote.id)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

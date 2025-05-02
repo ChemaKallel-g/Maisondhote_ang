@@ -1,0 +1,73 @@
+<div class="search-results-page">
+    <div class="header-section">
+        <div class="logo-area">
+            <img src="assets/logo2.png" class="logo" alt="Logo">
+            <span class="logo-text">Maison D'hote</span>
+        </div>
+        <div class="main-navigation">
+            <a routerLink="/dashboard" class="nav-item">Home</a>
+            <a *ngIf="!isLoggedIn()" href="/register" class="signup-button">Sign up</a>
+            <a *ngIf="!isLoggedIn()" href="/login" class="login-button">Log in</a>
+            <a *ngIf="isLoggedIn()" href="/login" (click)="logout()" class="signup-button">Log out</a>
+        </div>
+        <div class="search-summary">
+            <h2>Résultats pour "{{ destination }}"</h2>
+            <p>{{ availableMaisondhotes.length }} Maisons d'hôtes trouvées pour {{ selectedPerson }} personne(s) du {{ checkInDate | date }} au {{ checkOutDate | date }}</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="houses-list">
+            <ng-container *ngFor="let Maisondhote of availableMaisondhotes">
+                <div class="house-card">
+                    <div class="house-image">
+                        <img [src]="'assets/' + getMaisondhotephoto(Maisondhote.id)" alt="{{ Maisondhote.nomMaisondhote }}">
+                    </div>
+                    <div class="house-details">
+                        <h3 class="house-title">{{ Maisondhote.nomMaisondhote }}</h3>
+                        <p class="house-location">{{ Maisondhote.ville + ', ' + Maisondhote.adress }}</p>
+                        <button (click)="goToReservPage(Maisondhote)" class="book-button">Book Now</button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+       
+    </div>
+
+    <div class="footer-section">
+        <div class="footer-links-container">
+            <div class="footer-links">
+                <h3>Page</h3>
+                <a href="#">Home</a>
+                <a href="#">Search</a>
+                <a href="#">Blog</a>
+                <a href="#">About us</a>
+            </div>
+            <div class="footer-links">
+                <h3>Features</h3>
+                <a href="#">Find Maisondhote</a>
+                <a href="#">Book Maisondhote</a>
+                <a href="#">Reviews</a>
+            </div>
+            <div class="footer-links">
+                <h3>Cookies</h3>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Laws</a>
+            </div>
+            <div class="subscription-section">
+                <div class="left-content">
+                    <h2>Don't Wanna Miss Our Offers?</h2>
+                    <div class="subscription-form">
+                        <input type="email" id="email" name="email" placeholder="Your email@gmail.com">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+                <div class="right-content">
+                    <p>You guys better subscribe to our daily newsletter!</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2025 JoyEvent</div>
+    </div>
+</div>

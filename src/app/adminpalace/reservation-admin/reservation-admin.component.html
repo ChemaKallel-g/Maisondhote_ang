@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Reservation CRUD</h3>
+          <div class="card-tools">
+            <button mat-raised-button color="primary" (click)="AddReservation()">Add Reservation</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table id="reservationTable" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Total Price</th>
+                <th>Number of Persons</th>
+                <th>Client ID</th>
+                <th>Maisondhote ID</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of reservations">
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.checkin }}</td>
+                <td>{{ reservation.checkout }}</td>
+                <td>{{ reservation.PrixTotal }}</td>
+                <td>{{ reservation.nbPerson }}</td>
+                <td>{{ reservation.client_id }}</td>
+                <td>{{ reservation.Maisondhote_id }}</td>
+                <td>{{ reservation.etat }}</td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm" (click)="EditReservation(reservation)">Edit</button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="deleteReservation(reservation.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

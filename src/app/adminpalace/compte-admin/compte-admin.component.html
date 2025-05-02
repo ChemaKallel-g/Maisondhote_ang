@@ -1,0 +1,41 @@
+<!-- <div class="container-fluid"> 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Compte CRUD</h3>
+          <div class="card-tools">
+            <button mat-raised-button color="primary" (click)="openAddCompteDialog()">Add Compte</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table id="compteTable" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Administrator ID</th>
+                <th>Client ID</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let compte of comptes">
+                <td>{{compte.id}}</td>
+                <td>{{compte.Email}}</td>
+                <td>{{compte.Password}}</td>
+                <td>{{compte.administrator_id}}</td>
+                <td>{{compte.client_id}}</td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm" (click)="openEditCompteDialog(compte)">Edit</button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="deleteCompte(compte.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->

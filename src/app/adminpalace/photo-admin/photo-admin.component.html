@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Photo CRUD</h3>
+          <div class="card-tools">
+            <button mat-raised-button color="primary" (click)="AddPhoto()">Add Photo</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="photoTable" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Photo 1</th>
+                  <th>Photo 2</th>
+                  <th>Photo 3</th>
+                  <th>Photo 4</th>
+                  <th>Photo 5</th>
+                  <th>Maisondhote ID</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let photo of photos">
+                  <td>{{ photo.id }}</td>
+                  <td><img [src]="'assets/' + photo.photo1" alt="photo1" width="100"></td>
+                  <td><img [src]="'assets/' + photo.photo2" alt="photo2" width="100"></td>
+                  <td><img [src]="'assets/' + photo.photo3" alt="photo3" width="100"></td>
+                  <td><img [src]="'assets/' + photo.photo4" alt="photo4" width="100"></td>
+                  <td><img [src]="'assets/' + photo.photo5" alt="photo5" width="100"></td>
+
+                  <td>{{ photo.Maisondhote_id }}</td>
+                  <td>
+                    <button type="button" class="btn btn-warning btn-sm" (click)="EditPhoto(photo)">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="DeletePhoto(photo)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

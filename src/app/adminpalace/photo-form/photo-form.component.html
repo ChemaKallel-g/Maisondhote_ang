@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>{{ data.isAddMode ? 'Ajouter Photo' : 'Modifier Photo' }}</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onYesClick()">
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Photo 1</mat-label>
+        <input matInput formControlName="photo1" placeholder="Nom de la photo 1" required>
+        <mat-error *ngIf="form.controls['photo1'].hasError('required')">
+          La photo 1 est requise.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Photo 2</mat-label>
+        <input matInput formControlName="photo2" placeholder="Nom de la photo 2">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Photo 3</mat-label>
+        <input matInput formControlName="photo3" placeholder="Nom de la photo 3">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Photo 4</mat-label>
+        <input matInput formControlName="photo4" placeholder="Nom de la photo 4">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Photo 5</mat-label>
+        <input matInput formControlName="photo5" placeholder="Nom de la photo 5">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Maison d'hôte ID</mat-label>
+        <input matInput type="number" formControlName="Maisondhote_id" required>
+        <mat-error *ngIf="form.controls['Maisondhote_id'].hasError('required')">
+          L'ID de la maison d'hôte est requis.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="onNoClick()">Annuler</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onYesClick()">
+    {{ data.isAddMode ? 'Ajouter' : 'Enregistrer' }}
+  </button>
+</div>

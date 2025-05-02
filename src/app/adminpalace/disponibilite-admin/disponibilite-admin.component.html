@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Disponibilite CRUD</h3>
+          <div class="card-tools">
+            <button mat-raised-button color="primary" (click)="AddDisponibilite()">Add Disponibilite</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table id="disponibiliteTable" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Number of Rooms (Type 2)</th>
+                <th>Remaining Rooms (Type 2)</th>
+                <th>Price per Room (Type 2)</th>
+                <th>Number of Rooms (Type 3)</th>
+                <th>Remaining Rooms (Type 3)</th>
+                <th>Price per Room (Type 3)</th>
+                <th>Number of Rooms (Type 4)</th>
+                <th>Remaining Rooms (Type 4)</th>
+                <th>Price per Room (Type 4)</th>
+                <th>Maisondhote ID</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let disponibilite of disponibilites">
+                <td>{{ disponibilite.id }}</td>
+                <td>{{ disponibilite.dateDebut }}</td>
+                <td>{{ disponibilite.dateFin }}</td>
+                <td>{{ disponibilite.nbChambre2 }}</td>
+                <td>{{ disponibilite.nbChambreRestantes2 }}</td>
+                <td>{{ disponibilite.prixChambre2 }}</td>
+                <td>{{ disponibilite.nbChambre3 }}</td>
+                <td>{{ disponibilite.nbChambreRestantes3 }}</td>
+                <td>{{ disponibilite.prixChambre3 }}</td>
+                <td>{{ disponibilite.nbChambre4 }}</td>
+                <td>{{ disponibilite.nbChambreRestantes4 }}</td>
+                <td>{{ disponibilite.prixChambre4 }}</td>
+                <td>{{ disponibilite.Maisondhote_id }}</td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm" (click)="EditDisponibilite(disponibilite)">Edit</button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="DeleteDisponibilite(disponibilite)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

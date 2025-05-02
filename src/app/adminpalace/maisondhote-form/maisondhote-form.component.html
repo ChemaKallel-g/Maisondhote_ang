@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{ isAddMode ? 'Ajouter Maison d\'hôte' : 'Modifier Maison d\'hôte' }}</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="nomMaisondhote" required>
+        <mat-error *ngIf="form.controls['nomMaisondhote'].hasError('required')">Le nom est requis.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Adresse</mat-label>
+        <input matInput formControlName="adress" required>
+        <mat-error *ngIf="form.controls['adress'].hasError('required')">L'adresse est requise.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Ville</mat-label>
+        <input matInput formControlName="ville" required>
+        <mat-error *ngIf="form.controls['ville'].hasError('required')">La ville est requise.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de Visiteurs</mat-label>
+        <input matInput type="number" formControlName="nbVisiteur" required min="1">
+        <mat-error *ngIf="form.controls['nbVisiteur'].hasError('required')">Le nombre de visiteurs est requis.</mat-error>
+        <mat-error *ngIf="form.controls['nbVisiteur'].hasError('min')">Doit être au moins 1.</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Annuler</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submitForm()">
+    {{ isAddMode ? 'Ajouter' : 'Enregistrer' }}
+  </button>
+</div>
