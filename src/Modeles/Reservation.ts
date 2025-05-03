@@ -4,7 +4,7 @@ export interface Reservation {
     checkout: string;
     PrixTotal: number;
     nbPerson: number;
-    client_id: number | null;
+    client_email: string | null;
     Maisondhote_id: number | null;
     etat: string;
   }

@@ -31,7 +31,7 @@ export class ReservationFormComponent implements OnInit {
       checkout: [this.reservation.checkout, Validators.required],
       PrixTotal: [this.reservation.PrixTotal, Validators.required],
       nbPerson: [this.reservation.nbPerson, Validators.required],
-      client_id: [this.reservation.client_id],
+      client_email: [this.reservation.client_email],
       Maisondhote_id: [this.reservation.Maisondhote_id],
       etat: [this.reservation.etat, Validators.required],
     });

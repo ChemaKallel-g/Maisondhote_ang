@@ -177,7 +177,7 @@ export class ReservationpageComponent {
           checkin: this.checkInDate,
           checkout: this.checkOutDate,
           PrixTotal: this.priceTotal,
-          nbPerson: this.total,
+          nbPerson: this.selectedPerson,
           client_email: localStorage.getItem('email'),   //<--- this is null , fix me ,
           Maisondhote_id: this.myMaisondhote!.id,
         })
