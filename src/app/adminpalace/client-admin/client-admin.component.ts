@@ -6,7 +6,7 @@ import { ClientFormComponent } from '../client-form/client-form.component';
 import { ApiService } from 'src/Services/api-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
-import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
+import { MatSnackBar } from '@angular/material/snack-bar'; 
 
 @Component({
   selector: 'app-client-admin',
@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
   styleUrls: ['./client-admin.component.css'],
 })
 
-export class ClientAdminComponent implements OnInit { // Implements OnInit
+export class ClientAdminComponent implements OnInit { 
   formEdit!: FormGroup;
   addVerif: number = 0;
 

@@ -83,13 +83,8 @@ export class MaisondhoteAdminComponent implements OnInit {
             });
           },
           error: (error) => {
-            console.error('Erreur lors de l\'ajout de la maison d\'hôte:', error);
-            this.snackBar.open('Erreur lors de l\'ajout de la maison d\'hôte.', 'Fermer', {
-              duration: 5000,
-              horizontalPosition: 'end',
-              verticalPosition: 'top',
-              panelClass: ['error-snackbar'],
-            });
+            
+            
           },
         });
       }

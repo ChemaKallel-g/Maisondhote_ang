@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/Services/AuthService';
-import { ApiService } from 'src/Services/api-service.service'; // Vous utilisez toujours l'ApiService pour la création du client
-import { Md5 } from 'ts-md5'; // Vous l'utilisez toujours pour stocker le mot de passe dans votre API
+import { ApiService } from 'src/Services/api-service.service'; 
+
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
