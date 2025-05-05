@@ -26,8 +26,8 @@
             <tbody>
               <tr *ngFor="let reservation of reservations">
                 <td>{{ reservation.id }}</td>
-                <td>{{ reservation.checkin }}</td>
-                <td>{{ reservation.checkout }}</td>
+                <td>{{ reservation.checkin | date }}</td>
+                <td>{{ reservation.checkout | date }}</td>
                 <td>{{ reservation.PrixTotal }}</td>
                 <td>{{ reservation.nbPerson }}</td>
                 <td>{{ reservation.client_email }}</td>

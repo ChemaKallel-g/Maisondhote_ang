@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/Services/api-service.service';
-
 import { Reservation } from 'src/Modeles/Reservation';
 import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
 import { ReservationFormComponent } from '../reservation-form/reservation-form.component';
@@ -15,15 +14,25 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ReservationAdminComponent implements OnInit {
   reservations: Reservation[] = [];
 
-  constructor(private api: ApiService, private dialog: MatDialog, private snackBar: MatSnackBar) {}
+  constructor(
+    private api: ApiService, 
+    private dialog: MatDialog, 
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getReservations();
   }
 
   getReservations() {
-    this.api.getData('reservations').subscribe((data: Reservation[]) => {
-      this.reservations = data;
+    this.api.getData('reservations').subscribe({
+      next: (data: Reservation[]) => {
+        this.reservations = data;
+      },
+      error: (error) => {
+        console.error('Error fetching reservations:', error);
+        this.showError('Erreur lors du chargement des réservations');
+      }
     });
   }
 
@@ -35,10 +44,16 @@ export class ReservationAdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.api.postData('reservations', result).subscribe(() => {
-          this.getReservations();
-          this.showSuccess('Réservation ajoutée avec succès');
-        }, error => this.showError('Erreur lors de l\'ajout de la réservation'));
+        this.api.postData('reservations', result).subscribe({
+          next: () => {
+            this.getReservations();
+            this.showSuccess('Réservation ajoutée avec succès');
+          },
+          error: (error) => {
+            console.error('Error adding reservation:', error);
+            this.showError('Erreur lors de l\'ajout de la réservation');
+          }
+        });
       }
     });
   }
@@ -46,15 +61,22 @@ export class ReservationAdminComponent implements OnInit {
   EditReservation(reservation: Reservation): void {
     const dialogRef = this.dialog.open(ReservationFormComponent, {
       width: '600px',
-      data: { reservation: reservation }
+      data: { reservation: {...reservation} } // Copie profonde de l'objet
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.api.putData('reservations', result.id.toString(), result).subscribe(() => {
-          this.getReservations();
-          this.showSuccess('Réservation modifiée avec succès');
-        }, error => this.showError('Erreur lors de la modification de la réservation'));
+        console.log('Data to update:', result); // Pour débogage
+        this.api.putData('reservations', result.id.toString(), result).subscribe({
+          next: () => {
+            this.getReservations();
+            this.showSuccess('Réservation modifiée avec succès');
+          },
+          error: (error) => {
+            console.error('Error updating reservation:', error);
+            this.showError('Erreur lors de la modification de la réservation');
+          }
+        });
       }
     });
   }
@@ -72,10 +94,16 @@ export class ReservationAdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.api.deleteData('reservations', id.toString()).subscribe(() => {
-          this.getReservations();
-          this.showSuccess('Réservation supprimée avec succès');
-        }, error => this.showError('Erreur lors de la suppression de la réservation'));
+        this.api.deleteData('reservations', id.toString()).subscribe({
+          next: () => {
+            this.getReservations();
+            this.showSuccess('Réservation supprimée avec succès');
+          },
+          error: (error) => {
+            console.error('Error deleting reservation:', error);
+            this.showError('Erreur lors de la suppression de la réservation');
+          }
+        });
       }
     });
   }
