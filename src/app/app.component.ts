@@ -8,5 +8,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'JoyEvent';
+  title = 'Maison dhote';
 }
