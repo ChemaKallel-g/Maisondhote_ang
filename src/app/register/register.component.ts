@@ -41,8 +41,8 @@ export class RegisterComponent {
     this.authService.signUpWithEmailAndPassword(this.newUsername, this.newPassword).subscribe({
       next: (user) => {
         console.log('Inscription Firebase réussie!', user);
-        this.isSigningUp = false; // Réinitialiser le statut de chargement
-        this.router.navigate(['/login']); // Redirection immédiate après l'authentification
+        this.isSigningUp = false; 
+        this.router.navigate(['/login']);
       },
       error: (authError: any) => {
         console.error('Erreur d\'inscription Firebase:', authError);

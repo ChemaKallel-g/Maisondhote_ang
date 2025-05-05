@@ -43,12 +43,12 @@ export class ReservationpageComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      const destination = params['destination'];
+      const selectedDestination = params['destination'];
       const selectedPerson = params['selectedPerson'];
       const checkInDate = params['checkInDate'];
       const checkOutDate = params['checkOutDate'];
   
-      this.destination = destination;
+      this.destination = selectedDestination;
       this.selectedPerson = selectedPerson;
       this.checkInDate = checkInDate;
       this.checkOutDate = checkOutDate;
@@ -96,6 +96,8 @@ export class ReservationpageComponent {
     this.chambre2ToCheck = parseInt(this.selectedChambre2);
     this.chambre3ToCheck = parseInt(this.selectedChambre3);
     this.chambre4ToCheck = parseInt(this.selectedChambre4);
+    
+  // Étape 1 : Vérification des disponibilités
     this.disponibilites.forEach((dispo) => {
       console.log(dispo);
       if (dispo.nbChambreRestantes2 > 0 && this.chambre2ToCheck > 0) {
@@ -108,21 +110,29 @@ export class ReservationpageComponent {
         this.chambre4ToCheck = this.chambre4ToCheck - dispo.nbChambreRestantes4;
       }
     });
+     // Étape 2 : Gestion des erreurs
     if (
       this.chambre2ToCheck > 0 ||
       this.chambre3ToCheck > 0 ||
-      this.chambre4ToCheck > 0 ||
-      (this.selectedChambre2 == '0' &&
-        this.selectedChambre3 == '0' &&
-        this.selectedChambre4 == '0')
-    ) {
+      this.chambre4ToCheck > 0 ) 
+      {
       this.verif = false;
       alert('Pas de places disponibles');
-    } else {
+    } 
+    else if (
+      this.selectedChambre2 == '0' &&
+      this.selectedChambre3 == '0' &&
+      this.selectedChambre4 == '0'
+    ) {
+      this.verif = false;
+      alert('Veuillez choisir au moins une chambre');
+    } 
+    else {
       this.verif = true;
     }
     console.log('verif = ' + this.verif);
 
+  // Étape 3 : Mise à jour des disponibilités et enregistrement
     if (this.verif == true) {
       this.chambre2ToCheck = parseInt(this.selectedChambre2);
       this.chambre3ToCheck = parseInt(this.selectedChambre3);
@@ -178,19 +188,19 @@ export class ReservationpageComponent {
           checkout: this.checkOutDate,
           PrixTotal: this.priceTotal,
           nbPerson: this.selectedPerson,
-          client_email: localStorage.getItem('email'),   //<--- this is null , fix me ,
+          client_email: localStorage.getItem('email'),   
           Maisondhote_id: this.myMaisondhote!.id,
         })
         .subscribe(() => {});
-      alert('Place refservé avec succées');
+      alert('Place reservé avec succées');
       console.log('Email enregistré dans localStorage :', localStorage.getItem('email'));
     }
   }
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('currentUser');
+    return !localStorage.getItem('currentUser');
   }
   logout(): void {
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']); // par exemple
+    this.router.navigate(['/login']); 
   }
 }

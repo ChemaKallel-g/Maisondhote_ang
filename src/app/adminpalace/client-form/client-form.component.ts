@@ -6,7 +6,7 @@ import { Client } from 'src/Modeles/Clients';
 import { Inject } from '@angular/core';
 
 
-// N'oublie pas de les ajouter aux imports de ton module Angular également.
+
 
 @Component({
   selector: 'app-client-form',

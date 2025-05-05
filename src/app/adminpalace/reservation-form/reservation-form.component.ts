@@ -21,7 +21,7 @@ export class ReservationFormComponent implements OnInit {
     // Vérification si on est en mode "ajout" ou "modification"
     this.isAddMode = !data?.reservation;
     this.reservation = data?.reservation || {
-      id: 0, checkin: '', checkout: '', PrixTotal: 0, nbPerson: 0, client_id: null, Maisondhote_id: null, etat: ''
+      id: 0, checkin: '', checkout: '', PrixTotal: 0, nbPerson: 0, client_email: null, Maisondhote_id: null, etat: ''
     };
   }
 

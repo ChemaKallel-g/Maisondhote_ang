@@ -4,7 +4,7 @@ import { ApiService } from 'src/Services/api-service.service';
 import { Photo } from 'src/Modeles/Photo';
 import { PhotoFormComponent } from '../photo-form/photo-form.component';
 import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-photo-admin',
@@ -14,7 +14,7 @@ import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.co
 export class PhotoAdminComponent implements OnInit {
   photos: Photo[] = [];
 
-  constructor(private api: ApiService, public dialog: MatDialog) {}
+  constructor(private api: ApiService, public dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   refreshData() {
     this.api.getData('photos').subscribe((data: Photo[]) => {
@@ -36,7 +36,8 @@ export class PhotoAdminComponent implements OnInit {
         // Add the new photo to the list and the database
         this.api.postData('photos', result).subscribe(() => {
           this.refreshData();
-        });
+          this.showSuccess('Photo ajoutée avec succès');
+        }, error => this.showError('Erreur lors de l\'ajout de la photo'));
       }
     });
   }
@@ -53,10 +54,11 @@ export class PhotoAdminComponent implements OnInit {
         if (index !== -1) {
           this.photos[index] = result;
           this.api
-            .putData('photos', result.id.toString(), result)
+            .putData('photos', result.id!.toString(), result)
             .subscribe(() => {
               this.refreshData();
-            });
+              this.showSuccess('Photo modifiée avec succès');
+            }, error => this.showError('Erreur lors de la modification de la photo'));
         }
       }
     });
@@ -65,20 +67,35 @@ export class PhotoAdminComponent implements OnInit {
   DeletePhoto(photo: Photo): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: 'Delete Photo',
-        content: 'Are you sure you want to delete this photo?',
-        Cancel: 'Cancel',
-        Delete: 'Delete',
+        title: 'Supprimer la Photo',
+        content: 'Êtes-vous sûr de vouloir supprimer cette photo ?',
+        Cancel: 'Annuler',
+        Delete: 'Supprimer',
       },
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         // Delete the photo
-        this.api.deleteData('photos', photo.id.toString()).subscribe(() => {
+        this.api.deleteData('photos', photo.id!.toString()).subscribe(() => {
           this.refreshData();
-        });
+          this.showSuccess('Photo supprimée avec succès');
+        }, error => this.showError('Erreur lors de la suppression de la photo'));
       }
+    });
+  }
+
+  private showSuccess(message: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 3000,
+      panelClass: ['success-snackbar'],
+    });
+  }
+
+  private showError(message: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 5000,
+      panelClass: ['error-snackbar'],
     });
   }
 }

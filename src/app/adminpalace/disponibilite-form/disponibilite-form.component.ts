@@ -58,7 +58,13 @@ export class DisponibiliteFormComponent implements OnInit {
 
   onYesClick(): void {
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      const formData = this.form.value;
+      const result: Disponibilite = {
+        ...formData, // Spread the form values
+        id: this.data.disponibilite.id, // **Include the ID from the injected data**
+      };
+      this.dialogRef.close(result);
     }
   }
+  
 }

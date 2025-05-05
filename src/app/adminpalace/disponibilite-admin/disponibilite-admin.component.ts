@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/Services/api-service.service';
 import { Disponibilite } from 'src/Modeles/Disponibilite';
 // Import the form component
-
 import { DisponibiliteFormComponent } from '../disponibilite-form/disponibilite-form.component';
 import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-disponibilite-admin',
@@ -15,7 +15,7 @@ import { ConfirmDialogComponent } from 'src/app/confirm-dialog/confirm-dialog.co
 export class DisponibiliteAdminComponent implements OnInit {
   disponibilites: Disponibilite[] = [];
 
-  constructor(private api: ApiService, public dialog: MatDialog) {}
+  constructor(private api: ApiService, public dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   refreshData() {
     this.api.getData('disponibilites').subscribe((data: Disponibilite[]) => {
@@ -36,9 +36,9 @@ export class DisponibiliteAdminComponent implements OnInit {
       if (result) {
         // Add the new disponibilité to the list and the database
         this.api.postData('disponibilites', result).subscribe(() => {
-          this.disponibilites.push(result);
           this.refreshData();
-        });
+          this.showSuccess('Disponibilité ajoutée avec succès');
+        }, error => this.showError('Erreur lors de l\'ajout de la disponibilité'));
       }
     });
   }
@@ -51,15 +51,12 @@ export class DisponibiliteAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: Disponibilite | null) => {
       if (result) {
         // Update the disponibilité in the list and the database
-        const index = this.disponibilites.findIndex((d) => d.id === result.id);
-        if (index !== -1) {
-          this.disponibilites[index] = result;
-          this.api
-            .putData('disponibilites', result.id.toString(), result)
-            .subscribe(() => {
-              this.refreshData();
-            });
-        }
+        this.api
+          .putData('disponibilites', result.id!.toString(), result)
+          .subscribe(() => {
+            this.refreshData();
+            this.showSuccess('Disponibilité modifiée avec succès');
+          }, error => this.showError('Erreur lors de la modification de la disponibilité'));
       }
     });
   }
@@ -67,21 +64,39 @@ export class DisponibiliteAdminComponent implements OnInit {
   DeleteDisponibilite(disponibilite: Disponibilite): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: 'Delete Disponibilite',
-        content: 'Are you sure you want to delete this disponibilité?',
-        Cancel: 'Cancel',
-        Delete: 'Delete',
+        title: 'Supprimer la Disponibilité',
+        content: 'Êtes-vous sûr de vouloir supprimer cette disponibilité ?',
+        Cancel: 'Annuler',
+        Delete: 'Supprimer',
       },
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         // Delete the disponibilité
-        this.api.deleteData('disponibilites', disponibilite.id.toString()).subscribe(() => {
+        this.api.deleteData('disponibilites', disponibilite.id!.toString()).subscribe(() => {
           this.refreshData();
-        });
+          this.showSuccess('Disponibilité supprimée avec succès');
+        }, error => this.showError('Erreur lors de la suppression de la disponibilité'));
       }
     });
   }
-}
 
+  private showSuccess(message: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 3000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar'],
+    });
+  }
+
+  private showError(message: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      panelClass: ['error-snackbar'],
+    });
+  }
+}
